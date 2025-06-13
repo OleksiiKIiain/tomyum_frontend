@@ -120,7 +120,7 @@ const ResponsiveMenu = ({ open, setOpen }) => {
                       rel="noopener noreferrer"
                     >
                       <SiGlovo />
-                      Glovo-Tom Yam
+                      Glovo-Tom Yum
                     </a>
                   </li>
                 </ul>

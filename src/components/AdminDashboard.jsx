@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
   fetchAllDishes,
   createDish,
@@ -14,7 +16,13 @@ export default function AdminDashboard() {
   const [tab, setTab] = useState('dishes');
   const DEFAULT_IMAGE_URL = 'https://res.cloudinary.com/deahe628t/image/upload/v1747221036/Image-not-found_kmigoz.png';
 
+  const navigate = useNavigate();
+
   const [dishes, setDishes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const filteredDishes = dishes.filter(d =>
+  d.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
   const [categories, setCategories] = useState([]);
 
   const [createForm, setCreateForm] = useState({ name: '', description: '', price: '', category_id: '', imageFile: null });
@@ -136,6 +144,12 @@ export default function AdminDashboard() {
 
   return (
     <div className="container mx-auto p-4">
+      <button
+        onClick={() => navigate('/')}
+        className="bg-gray-200 hover:bg-gray-300 text-black font-semibold px-4 py-2 rounded mb-4"
+      >
+        ← Назад на головну
+      </button>
       <h1 className="text-3xl font-bold mb-6">Адмін-панель</h1>
       <div className="flex space-x-4 mb-6">
         <button className={`px-4 py-2 ${tab==='dishes'?'bg-primary text-white':'bg-gray-200'}`} onClick={()=>setTab('dishes')}>Страви</button>
@@ -181,15 +195,28 @@ export default function AdminDashboard() {
 
             <div className="p-4 border rounded">
               <h3 className="font-bold mb-2">Список страв</h3>
-              {dishes.map(d=> (
-                <div key={d.id} className="p-2 border-b flex justify-between items-center">
-                  <span>{d.name}</span>
-                  <div className="space-x-2">
-                    <button onClick={()=>startEdit(d)} className="text-blue-600">Edit</button>
-                    <button onClick={()=>handleDelete(d.id)} className="text-red-600">Del</button>
+
+              {/* Поле для пошуку */}
+              <input
+                type="text"
+                placeholder="Пошук страви..."
+                className="w-full mb-3 p-2 border rounded"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+
+              {/* Список з прокруткою */}
+              <div className="max-h-[400px] overflow-y-auto pr-1">
+                {filteredDishes.map((d) => (
+                  <div key={d.id} className="p-2 border-b flex justify-between items-center">
+                    <span>{d.name}</span>
+                    <div className="space-x-2">
+                      <button onClick={() => startEdit(d)} className="text-blue-600">Edit</button>
+                      <button onClick={() => handleDelete(d.id)} className="text-red-600">Del</button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
