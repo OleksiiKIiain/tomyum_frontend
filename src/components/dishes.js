@@ -18,23 +18,23 @@ import udonSeafood from '../assets/images_dishes/удон мор гади.jpg';
 import fitnessChicken from '../assets/images_dishes/фітнес з куркою.jpg';
 import secret from '../assets/images_dishes/secretcake.png'
 
- export const slides = [
-    {
-        url: shrimpTemp
-    },
-    {
-        url : teriyakiWings
-    },
-    {
-        url : chickenTemp
-    },
-    {
-        url : sobaChicken
-    },
-    {
-        url : fitnessChicken
-    }
-  ]
+//  export const slides = [
+//     {
+//         url: shrimpTemp
+//     },
+//     {
+//         url : teriyakiWings
+//     },
+//     {
+//         url : chickenTemp
+//     },
+//     {
+//         url : sobaChicken
+//     },
+//     {
+//         url : fitnessChicken
+//     }
+//   ]
 
  export const menuItems = [
     {

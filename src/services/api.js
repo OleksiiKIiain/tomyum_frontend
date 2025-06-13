@@ -58,7 +58,6 @@ export async function login({ email, password }) {
     throw new Error('Не вдалося увійти');
   }
 
-  // ✅ Успіх
   const { access_token } = data;
   setToken(access_token);
   return access_token;
@@ -134,7 +133,10 @@ export async function fetchAllDishes() {
   });
   if (!res.ok) throw new Error('Не вдалося завантажити страви');
   return res.json();
+
+  
 }
+
 
 export async function searchDishes(q) {
   const res = await fetch(
