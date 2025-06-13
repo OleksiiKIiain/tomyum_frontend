@@ -15,7 +15,7 @@ const VerticalDishCard = ({ dish }) => {
       />
       <div className="p-4 flex flex-col justify-between flex-1">
         <h3 className="text-lg font-semibold mb-2">{dish.name}</h3>
-        <p className="text-gray-600 flex-1 text-sm line-clamp-3">
+        <p className="text-gray-600 flex-1 text-sm ">
           {dish.description}
         </p>
         <span className="text-lg font-bold mt-4">{dish.price}₴</span>
